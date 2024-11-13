@@ -1,0 +1,625 @@
+/* Estilos Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+header::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.logo-header {
+  width: 130px; /* ajuste o tamanho conforme necessário */
+  height: auto;
+  margin-left: 20px;
+}
+
+.burguer {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.burguer div {
+  width: 25px;
+  height: 3px;
+  background-color: #FFD700;
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+.line1, .line2, .line3 {
+    width: 30px;
+    height: 4px;
+    background-color: #FFD700;
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+/* Menu */
+nav {
+    display: flex;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+.nav.active .burguer .line1 {
+    transform: rotate(45deg) translateY(8px); /* Move e rota a linha superior */
+}
+
+.nav.active .burguer .line2 {
+    opacity: 0;  /* Esconde a linha do meio */
+}
+
+.nav.active .burguer .line3 {
+    transform: rotate(-45deg) translateY(-8px); /* Move e rota a linha inferior */
+}
+
+/* Transição suave entre os estados */
+.burguer .line1, .burguer .line2, .burguer .line3 {
+    transition: all 0.3s ease;
+}
+/* Hero Section */
+#hero {
+    height:80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  background-size: contain;
+  filter: blur(7px);
+  z-index: -1;
+  transform: scale(1.1);
+}
+
+#hero h2 {
+    position: relative;
+    z-index: 1;
+    color: #FFD700;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-shadow: 2px, 2px, 4px rgba(0, 0, 0, 0.8);
+    font-size:60px;
+    font-weight: bold;
+}
+
+#hero p {
+    position: relative;
+    z-index: 1;
+    color: #FFD700;
+    font-size: 25px;
+    margin-top: 10px;
+    color: #fff;
+}
+
+/* CTA Button */
+.cta-button, .cta-button-highlight {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover, .cta-button-highlight:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Estilos do container principal */
+#metodo-yomark {
+    padding: 40px;
+    color: #FFD700;
+    text-align: center;
+}
+
+/* Título e descrição principais */
+#metodo-yomark h2 {
+    font-size: 28px;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+#metodo-yomark p {
+    font-size: 16px;
+    color: #FFF;
+    margin-bottom: 40px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Itens da grid */
+.grid-item {
+    background-color: #3a3938;
+    color: #FFD700;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.grid-item img {
+    width: 20%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.grid-item h3 {
+    font-size: 20px;
+    color: #FFD700;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.grid-item p {
+    font-size: 15px;
+    color: #FFD700
+}
+#cta {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(145deg, #000000, #222222);
+    color: #FFD700;
+}
+
+/* Texto do CTA */
+#cta h2 {
+    font-size: 35px;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+#cta p {
+    color: #fff;
+    font-size: 19px;
+    margin-bottom: 30px;
+}
+
+/* Botão de destaque no CTA */
+.cta-button-highlight {
+    background-color: #FFD700;
+    color: #000;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button-highlight:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Resultados e Criativos Section */
+#resultados {
+    padding: 80px 50px;
+    text-align: center;
+    background-color: #111;
+}
+
+#resultados h2 {
+    color: #FFD700;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.resultados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.resultado-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.resultado-item img {
+    width: 80%;
+    height: auto;
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+}
+
+.resultado-item:hover img {
+    transform: scale(1.05);
+}
+
+.resultado-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFD700;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.resultado-item:hover .resultado-overlay {
+    opacity: 1;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FFD700;
+    border-radius: px;
+}
+/* Contato Section */
+#contact {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #000;
+}
+
+#contact h2 {
+    color: #FFD700;
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Footer Container */
+.footer {
+    background-color: #000;
+    color: #FFF;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Footer Content */
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Footer Sections */
+.footer-section {
+    margin: 10px;
+    flex: 1 1 200px;
+}
+
+/* Footer Links */
+.footer a {
+    color: #FFD700; /* Amarelo */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid #FFD700;
+    margin-top: 20px;
+    padding-top: 10px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.floating-whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #FFD700; /* Fundo amarelo */
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.floating-whatsapp-button:hover {
+    transform: scale(1.1); /* Aumenta o botão levemente ao passar o mouse */
+}
+
+.whatsapp-icon {
+    width: 31px; /* Tamanho do ícone */
+    height: 31px;
+    padding-top: 3px;
+}
+.contact-popup {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: #1c1c1c;
+    color: #f1f1f1;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #ffd700; /* Amarelo Dourado */
+}
+
+.popup-content label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffd700;
+}
+
+.popup-content input,
+.popup-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ffd700;
+    border-radius: 4px;
+    background-color: #2e2e2e;
+    color: #f1f1f1;
+    font-size: 16px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffd700;
+    color: #1c1c1c;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #e6b800;
+}
+
+.confirmation-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: fle;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.confirmation-content {
+    background: rgb(34, 33, 33);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 80%;
+    color: #FFD700;
+}
+/* Responsividade */
+@media (max-width: 768px) {
+  
+   body {
+    font-size: 16px;
+   }
+   
+   .container {
+     width: 100%;
+     padding: 0 15px;
+   }
+    header {
+        text-align: center;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start; /* Alinhamento do cabeçalho */
+    }
+    
+    .logo-header {
+      max-width: 25%;
+      height: auto;
+      margin-left: 10px;
+    }
+    
+    .header-element {
+    opacity: 0; /* Tornar invisível */
+    transform: translateY(-20px); /* Movimentar um pouco para cima */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Animação de transição */
+}
+
+/* Quando o menu hambúrguer é ativado */
+.header-element.show {
+    opacity: 1; /* Torna visível */
+    transform: translateY(0); /* Volta para a posição normal */
+}
+    .nav {
+      position: right;
+      left: 20px;
+      top: 15px;
+      z-index: 1001;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        margin-top: 60px; /* Distância do topo */
+        align-items: flex-start;
+    }
+    
+    nav ul {
+        display: none; /* Oculta a lista de navegação por padrão */
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .burguer {
+        display: block;
+        flex-direction: column;
+        cursor: pointer;
+    }
+    
+    .header-element {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* Ativar a animação para mostrar os elementos quando o menu é aberto */
+    .menu.active .header-element {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    nav.active .nav-links {
+      display: flex;
+    }
+    
+    .nav-links li {
+        margin-left: 0;
+        padding: 15px 0;
+    }
+    .nav-links li a {
+        font-size: 18px;
+        font-weight: bold;
+        color: #FFD700;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+        color: #fff;
+    }
+    
+    #hero h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+    #hero p {
+      text-align: center;
+    }
+    .cta-button, .cta-button-highlight {
+        font-size: 16px;
+    }
+    
+    .grid {
+        grid-template-columns: 1fr; /* Um item por linha */
+    }
+
+.footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .floating-whatsapp-button {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
