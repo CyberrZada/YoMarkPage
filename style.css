@@ -53,7 +53,7 @@ header::before {
 }
 
 .burguer {
-  display: flex;
+  display: none;
   flex-direction: column;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -232,7 +232,6 @@ nav ul li a:hover {
 .grid-item p {
     font-size: 15px;
     color: #FFD700
-    font-weight: bold;
 }
 #cta {
     padding: 60px 20px;
@@ -513,7 +512,13 @@ nav ul li a:hover {
     max-width: 80%;
     color: #FFD700;
 }
-/* Responsividade */
+
+@media (min-width: 769px) {
+    .burguer {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
   
    body {
@@ -548,7 +553,7 @@ nav ul li a:hover {
     transform: translateY(0); /* Volta para a posição normal */
 }
     .nav {
-      position: right;
+      position: left;
       left: 20px;
       top: 15px;
       z-index: 1001;
@@ -557,8 +562,12 @@ nav ul li a:hover {
     .nav-links {
         display: none;
         flex-direction: column;
+        padding: 20px;
         margin-top: 60px; /* Distância do topo */
         align-items: flex-start;
+        background-color: #111;
+        border-radius: 8px;
+        
     }
     
     nav ul {
