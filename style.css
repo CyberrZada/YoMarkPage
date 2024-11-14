@@ -19,33 +19,37 @@
 body {
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    background: linear-gradient(210deg, #000000, #141414, #000000);
+    overflow-x: hidden;
+    width: 100%;
+    background: linear-gradient(212deg, #000000, #1a1a19, #000000);
     background-size: 600% 600%;
 
-    -webkit-animation: AnimationName 52s ease infinite;
-    -moz-animation: AnimationName 52s ease infinite;
-    animation: AnimationName 52s ease infinite;
+    -webkit-animation: AnimationName 13s ease infinite;
+    -moz-animation: AnimationName 13s ease infinite;
+    -o-animation: AnimationName 13s ease infinite;
+    animation: AnimationName 13s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
-    0%{background-position:86% 0%}
-    50%{background-position:15% 100%}
-    100%{background-position:86% 0%}
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
 }
 @-moz-keyframes AnimationName {
-    0%{background-position:86% 0%}
-    50%{background-position:15% 100%}
-    100%{background-position:86% 0%}
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
 }
 @keyframes AnimationName {
-    0%{background-position:86% 0%}
-    50%{background-position:15% 100%}
-    100%{background-position:86% 0%}
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
 }
-    overflow-x: hidden;
-    width: 100%;
-}
-
 /* Header */
 header {
     position: relative;
@@ -56,6 +60,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    background: #000;
 }
 
 header::before {
@@ -145,7 +150,35 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden;
+    background: linear-gradient(212deg, #000000, #0d0d0c);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 13s ease infinite;
+    -moz-animation: AnimationName 13s ease infinite;
+    -o-animation: AnimationName 13s ease infinite;
+    animation: AnimationName 13s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:54% 0%}
+    50%{background-position:47% 100%}
+    100%{background-position:54% 0%}
+}
 }
 
 #hero::before {
@@ -155,6 +188,7 @@ nav ul li a:hover {
   left: 0;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.9);
   background-size: contain;
   filter: blur(7px);
   z-index: -1;
