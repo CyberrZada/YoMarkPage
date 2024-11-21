@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://agenciayomark.netlify.app/sitemap.xml
