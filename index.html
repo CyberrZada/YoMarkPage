@@ -1,73 +1,235 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yomark</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yomark - Sua Agência de Marketing Digital</title>
+    <!-- Link para o Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="description" content="Revolucione sua presença online com a YoMark. Somos especialistas em análise de mercado,
+    criação de sites otimizados e gestão de tráfego. Obtenha resultados mensuráveis e cresça seu negócio agora!">
+    <meta name="keywords" content="marketing digital, gestão de tráfego, criação de sites, YoMark, presença online, Agência, yomark, agência yomark, Agência YoMark">
+    <meta name="author" content="Agência YoMark">
+    <meta name="robots" content="index, follow">
+    <!-- Links para as fontes do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="icons/YoMark-dourado.png">
+    <!-- Nova fonte: Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Link para o seu arquivo CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <header>
-    <div class="container">
-      <div class="logo">Yomark</div>
-      <div class="burger" id="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <nav class="nav-links" id="nav-links">
-        <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
+<body class="overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar-fixed bg-black-yomark text-white p-4">
+        <div class="container mx-auto flex items-center"> <!-- Removido justify-between daqui -->
+            <!-- LOGO DA AGÊNCIA (AGORA UMA IMAGEM) -->
+            <!-- Adicionado 'mr-auto' para empurrar o logo para a esquerda e o resto para a direita -->
+            <a href="#" class="flex items-center mr-auto"> 
+                <img src="icons/YoMark-dourado.png" alt="Logo Yomark" class="h-20 md:h-35">
+            </a>
+            <!-- Fim do LOGO -->
+
+            <!-- Links de Navegação (ajustado para centralizar naturalmente) -->
+            <!-- Removido 'flex-grow' e 'justify-center' desta div -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-yellow-yomark transition duration-300">Home</a>
+                <a href="#servicos" class="hover:text-yellow-yomark transition duration-300">Serviços</a>
+            </div>
+            <!-- Fim dos Links de Navegação -->
+
+            <!-- Botão Fale Conosco para Telas Maiores -->
+            <!-- Adicionado 'ml-auto' para empurrar o botão para a direita -->
+            <a href="#" class="hidden md:block bg-yellow-yomark text-black py-2 px-6 rounded-full hover:bg-yellow-darker transition duration-300 font-semibold ml-auto" onclick="openContactPopup()">
+                Solicitar análise gratuita
+            </a>
+            <!-- Fim do Botão Fale Conosco -->
+
+            <!-- Botão do Menu Mobile -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Fim do Botão do Menu Mobile -->
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden bg-black-yomark p-4">
+            <a href="#home" class="block text-white hover:text-yellow-yomark py-2">Home</a>
+            <a href="#servicos" class="block text-white hover:text-yellow-yomark py-2">Serviços</a>
+            <a href="#" class="block bg-yellow-yomark text-black py-2 px-4 mt-4 text-center rounded-full hover:bg-yellow-darker transition duration-300 font-semibold" onclick="openContactPopup()">
+                Solicitar análise gratuita
+            </a>
+        </div>
+        <!-- Fim do Menu Mobile -->
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-black-yomark text-white h-screen flex items-center justify-center text-center p-4 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-70"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Revolucione sua presença online com a <span class="text-yellow-yomark">Yomark</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-0 animate-fade-in-up animation-delay-500">
+                Transformamos tráfego em vendas, sites em experiências e redes sociais em vitrines digitais.
+            </p>
+            <a href="#servicos" class="bg-yellow-yomark text-black py-3 px-8 rounded-full text-lg font-semibold hover:bg-yellow-darker transition duration-300 transform hover:scale-105 opacity-0 animate-fade-in-up animation-delay-1000">
+                Explore Nossos Serviços
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 text-black-yomark">Nossos <span class="text-yellow-yomark">Serviços</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-black-yomark p-8 rounded-lg shadow-lg text-white text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-yellow-yomark text-5xl mb-4">💡</div>
+                    <h3 class="text-2xl font-bold mb-3">Estratégia Digital</h3>
+                    <p class="text-gray-300">Desenvolvemos planos personalizados para atingir seus objetivos de marketing online.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-black-yomark p-8 rounded-lg shadow-lg text-white text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-yellow-yomark text-5xl mb-4">🔍</div>
+                    <h3 class="text-2xl font-bold mb-3">SEO & SEM</h3>
+                    <p class="text-gray-300">Otimizamos seu site para motores de busca e gerenciamos campanhas de anúncios.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-black-yomark p-8 rounded-lg shadow-lg text-white text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-yellow-yomark text-5xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-3">Mídias Sociais</h3>
+                    <p class="text-gray-300">Criamos e gerenciamos sua presença em redes sociais para engajar seu público.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-black-yomark p-8 rounded-lg shadow-lg text-white text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-yellow-yomark text-5xl mb-4">✍️</div>
+                    <h3 class="text-2xl font-bold mb-3">Marketing de Conteúdo</h3>
+                    <p class="text-gray-300">Produzimos conteúdo relevante e de qualidade para atrair e converter clientes.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="bg-black-yomark p-8 rounded-lg shadow-lg text-white text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-yellow-yomark text-5xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-bold mb-3">Design & Branding</h3>
+                    <p class="text-gray-300">Desenvolvemos identidades visuais marcantes e materiais gráficos impactantes.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="bg-black-yomark p-8 rounded-lg shadow-lg text-white text-center transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                    <div class="text-yellow-yomark text-5xl mb-4">📊</div>
+                    <h3 class="text-2xl font-bold mb-3">Análise de Dados</h3>
+                    <p class="text-gray-300">Monitoramos e otimizamos suas campanhas com base em dados e métricas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-16 md:py-24 bg-black-yomark text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Pronto para <span class="text-yellow-yomark">Alavancar</span> Seu Negócio?</h2>
+            <p class="text-xl mb-8">Entre em contato e descubra como a Yomark pode transformar seus resultados digitais.</p>
+            <!-- Alterado para abrir o pop-up -->
+            <a href="#" class="bg-yellow-yomark text-black py-4 px-10 rounded-full text-xl font-semibold hover:bg-yellow-darker transition duration-300 transform hover:scale-105" onclick="openContactPopup()">
+                Fale Conosco Agora!
+            </a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-black-yomark text-white py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 pb-8 border-b border-gray-700">
+
+                <!-- Coluna 1: Logo e Descrição -->
+                <div>
+                    <a href="#" class="text-3xl font-bold text-yellow-yomark mb-4 block">YOMARK</a>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Sua agência de marketing digital focada em resultados. Transformamos desafios em oportunidades de crescimento para o seu negócio.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Links Rápidos -->
+                <div>
+                    <h4 class="text-xl font-semibold text-yellow-yomark mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-yellow-yomark transition duration-300">Home</a></li>
+                        <li><a href="#servicos" class="text-gray-300 hover:text-yellow-yomark transition duration-300">Serviços</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-yellow-yomark transition duration-300" onclick="openContactPopup()">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Contato -->
+                <div>
+                    <h4 class="text-xl font-semibold text-yellow-yomark mb-4">Fale Conosco</h4>
+                    <p class="text-gray-300 mb-2">E-mail: <a href="mailto:contato@yomark.com" class="hover:text-yellow-yomark transition duration-300">agenciayomark@gmail.com</a></p>
+                    <p class="text-gray-300 mb-2">Telefone: <a href="tel: +5521964442784" class="hover:text-yellow-yomark transition duration-300">+55 (21) 96444-2784</a></p>
+                </div>
+
+                <!-- Coluna 4: Redes Sociais -->
+                <div>
+                    <h4 class="text-xl font-semibold text-yellow-yomark mb-4">Siga-nos</h4>
+                    <div class="flex space-x-4">
+                        <!-- Ícone do Instagram (SVG) -->
+                        <a href="https://www.instagram.com/agenciayomark" class="text-gray-400 hover:text-yellow-yomark transition duration-300" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2c2.71 0 3.056.012 4.12.06c1.07.046 1.79.22 2.42.469.66.257 1.25.6 1.8.96.55.36 1.02.79 1.47 1.24.45.45.88.92 1.24 1.47.36.55.7 1.14.96 1.8.24.63.42 1.35.469 2.42.048 1.064.06 1.41.06 4.12s-.012 3.056-.06 4.12c-.046 1.07-.22 1.79-.469 2.42-.257.66-.6 1.25-.96 1.8-.36.55-.79 1.02-1.24 1.47-.45.45-.92.88-1.47 1.24-.55.36-1.14.7-1.8.96-.63.24-1.35.42-2.42.469-1.064.048-1.41.06-4.12.06s-3.056-.012-4.12-.06c-1.07-.046-1.79-.22-2.42-.469-.66-.257-1.25-.6-1.8-.96-.55-.36-1.02-.79-1.47-1.24-.45-.45-.88-.92-1.24-1.47-.36-.55-.7-1.14-.96-1.8-.24-.63-.42-1.35-.469-2.42-.048-1.064-.06-1.41-.06-4.12s.012-3.056.06-4.12c.046-1.07.22-1.79.469 2.42.257-.66.6-1.25.96-1.8.36-.55.79-1.02 1.24-1.47.45-.45.92-.88 1.47-1.24.55-.36 1.14-.7 1.8-.96.63-.24 1.35-.42 2.42-.469C9.944 2.012 10.29 2 12 2zm0 3.75c-4.56 0-8.25 3.69-8.25 8.25S7.44 20.25 12 20.25s8.25-3.69 8.25-8.25S16.56 5.75 12 5.75zm3.75 2.25c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-3.75 1.5c-2.07 0-3.75 1.68-3.75 3.75S9.93 17.25 12 17.25s3.75-1.68 3.75-3.75S14.07 9.5 12 9.5z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-sm mt-8">
+                <p>&copy; 2025 Yomark. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Botão flutuante do WhatsApp -->
+<a href="https://wa.me/5521964442784" target="_blank" class="floating-whatsapp-button">
+    <img src="https://img.icons8.com/ios-filled/50/000000/whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+    <!-- Popup de Contato -->
+    <div id="contact-popup" class="contact-popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 class="text-3xl font-bold text-black-yomark mb-6">Entre em <span class="text-yellow-yomark">Contato</span></h2>
+            <form id="contactForm" action="https://formsubmit.co/agenciayomark@gmail.com" method="POST" onsubmit="handleSubmit(event)">
+                <label for="name" class="block text-gray-700 text-lg font-semibold mb-2 mt-4">Nome</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-yomark">
+                
+                <label for="email" class="block text-gray-700 text-lg font-semibold mb-2 mt-4">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-yomark">
+                
+                <label for="whatsapp" class="block text-gray-700 text-lg font-semibold mb-2 mt-4">WhatsApp (opcional)</label>
+                <input type="tel" id="whatsapp" name="whatsapp" placeholder="+55 (21) 96444-2784" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-yomark">
+                
+                <label for="message" class="block text-gray-700 text-lg font-semibold mb-2 mt-4">Mensagem</label>
+                <textarea id="message" name="message" rows="4" placeholder="Sua mensagem" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-yomark"></textarea>
+                
+                <button type="submit" class="submit-btn bg-yellow-yomark text-black py-3 px-8 rounded-full text-lg font-semibold hover:bg-yellow-darker transition duration-300 transform hover:scale-105 mt-6 w-full">Enviar</button>
+                <input type="hidden" name="_subject" value="Contato pelo site Yomark">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+            </form>
+        </div>
     </div>
-  </header>
+    
 
-  <main>
-    <section id="inicio">
-      <h1>Bem-vindo à Yomark</h1>
-      <p>Soluções em marketing digital para o seu negócio.</p>
-    </section>
-
-    <section id="servicos">
-      <h2>O que oferecemos</h2>
-      <p>Gestão de redes sociais, tráfego pago, branding e muito mais.</p>
-    </section>
-
-    <section id="sobre">
-      <h2>Quem somos</h2>
-      <p>Uma agência focada em resultados reais para sua empresa.</p>
-    </section>
-
-    <section id="contato">
-      <h2>Fale conosco</h2>
-      <button onclick="openPopup()">Entrar em contato</button>
-    </section>
-  </main>
-
-  <!-- Formulário de Contato -->
-  <div class="popup" id="contact-popup">
-    <form id="contactForm" action="https://formspree.io/f/mayvlzdo" method="POST" onsubmit="handleSubmit(event)">
-      <h3>Entre em contato</h3>
-      <input type="text" name="name" placeholder="Seu nome" required>
-      <input type="email" name="email" placeholder="Seu e-mail" required>
-      <textarea name="message" placeholder="Sua mensagem" required></textarea>
-      <button type="submit">Enviar</button>
-      <button type="button" onclick="closePopup()">Cancelar</button>
-    </form>
-  </div>
-
-  <!-- Confirmação -->
-  <div class="popup" id="confirmation-popup">
-    <div class="popup-content">
-      <p>Mensagem enviada com sucesso!</p>
-      <button onclick="closeConfirmationPopup()">Fechar</button>
+    <!-- Popup de confirmação -->
+    <div id="confirmation-popup" class="confirmation-popup" onclick="closeConfirmationPopup()">
+        <div class="confirmation-content bg-white p-8 rounded-lg shadow-lg text-center">
+            <p class="text-xl font-semibold mb-4 text-black-yomark">Seu e-mail foi enviado com sucesso!</p>
+            <p class="text-lg text-gray-700">Clique em qualquer lugar para fechar.</p>
+        </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <!-- Link para o seu arquivo JavaScript -->
+    <script src="script.js"></script>
+
 </body>
 </html>
