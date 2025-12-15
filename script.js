@@ -1,139 +1,212 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    // Exclui links que abrem o pop-up para não dar scroll indesejado
-    if (anchor.getAttribute('href') !== '#') {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. MÁSCARA DE TELEFONE (Formato Brasileiro) ---
+    const phoneInput = document.getElementById('phone');
+    if(phoneInput) {
+        phoneInput.addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
         });
     }
-});
 
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) { // Ajuste o valor conforme necessário
-        navbar.classList.add('navbar-scrolled');
-    } else {
-        navbar.classList.remove('navbar-scrolled');
+    /* --- 2. LÓGICA DE ENVIO REAL (CONECTADO AO SEU FORMSPREE) --- */
+    const form = document.getElementById('contactForm');
+    const feedbackContainer = document.getElementById('form-feedback');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if(form) {
+        async function handleSubmit(event) {
+            event.preventDefault(); // Impede o recarregamento da página
+
+            // 1. Feedback Visual: Botão muda para "Enviando..."
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.style.opacity = "0.7";
+            submitBtn.style.cursor = "not-allowed";
+
+            // 2. Prepara os dados do formulário
+            const data = new FormData(event.target);
+
+            try {
+                // 3. Envio Real para o seu Formspree
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // === SUCESSO ===
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado!';
+                    submitBtn.style.backgroundColor = "#2ecc71"; // Verde
+                    
+                    // Mostra mensagem de sucesso
+                    const nameInput = document.getElementById('name');
+                    const firstName = nameInput ? nameInput.value.split(' ')[0] : 'Visitante';
+                    
+                    feedbackContainer.style.display = 'block';
+                    // Delay pequeno para animação
+                    setTimeout(() => {
+                        feedbackContainer.style.opacity = '1';
+                        feedbackContainer.innerHTML = `
+                            <div class="success-message">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Obrigado, ${firstName}! Recebemos sua mensagem.</span>
+                            </div>
+                        `;
+                    }, 50);
+
+                    form.reset(); // Limpa os campos
+
+                    // Restaura o botão após 5 segundos
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style.backgroundColor = "";
+                        submitBtn.style.opacity = "1";
+                        submitBtn.style.cursor = "pointer";
+                        
+                        // Esconde a mensagem
+                        feedbackContainer.style.opacity = '0';
+                        setTimeout(() => { feedbackContainer.style.display = 'none'; }, 500);
+                    }, 5000);
+
+                } else {
+                    // === ERRO DO SERVIDOR ===
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Erro no envio');
+                }
+            } catch (error) {
+                // === ERRO DE CONEXÃO ===
+                console.error(error);
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro';
+                submitBtn.style.backgroundColor = "#e74c3c"; // Vermelho
+                
+                feedbackContainer.style.display = 'block';
+                feedbackContainer.style.opacity = '1';
+                feedbackContainer.innerHTML = `
+                    <div class="error-message" style="color: #e74c3c; background: rgba(231,76,60,0.1); padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #e74c3c;">
+                        <i class="fas fa-wifi"></i> Ocorreu um erro. Verifique sua conexão ou tente pelo WhatsApp.
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.style.backgroundColor = "";
+                    submitBtn.style.opacity = "1";
+                    submitBtn.style.cursor = "pointer";
+                }, 4000);
+            }
+        }
+
+        form.addEventListener("submit", handleSubmit);
     }
-});
 
-// Mobile menu toggle
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
+    // --- 3. MENU MOBILE ---
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
 
-if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close mobile menu when a link is clicked
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
-    });
-}
-
-// Simple animation for Hero Section (can be expanded with Intersection Observer for better performance)
-document.addEventListener('DOMContentLoaded', () => {
-    const heroHeadline = document.querySelector('.animate-fade-in-up');
-    const heroParagraph = document.querySelector('.animate-fade-in-up.animation-delay-500');
-    const heroButton = document.querySelector('.animate-fade-in-up.animation-delay-1000');
-
-    if (heroHeadline) {
-        heroHeadline.classList.remove('opacity-0');
-        heroHeadline.style.animation = 'fadeInUp 1s ease-out forwards';
-    }
-    if (heroParagraph) {
-        heroParagraph.classList.remove('opacity-0');
-        heroParagraph.style.animation = 'fadeInUp 1s ease-out 0.5s forwards';
-    }
-    if (heroButton) {
-        heroButton.classList.remove('opacity-0');
-        heroButton.style.animation = 'fadeInUp 1s ease-out 1s forwards';
-    }
-});
-
-
-/* --- Funções para o Popup de Contato --- */
-
-const contactPopup = document.getElementById('contact-popup');
-const confirmationPopup = document.getElementById('confirmation-popup');
-const contactForm = document.getElementById('contactForm');
-
-// Função para abrir o pop-up de contato
-function openContactPopup() {
-    if (contactPopup) {
-        contactPopup.style.display = 'flex'; // Usar flex para centralizar
-        document.body.style.overflow = 'hidden'; // Bloqueia a rolagem do fundo
-    }
-}
-
-// Função para fechar o pop-up de contato
-function closePopup() {
-    if (contactPopup) {
-        contactPopup.style.display = 'none';
-        document.body.style.overflow = ''; // Restaura a rolagem do fundo
-        contactForm.reset(); // Limpa o formulário ao fechar
-    }
-}
-
-// Função para mostrar o pop-up de confirmação
-function showConfirmationPopup() {
-    if (confirmationPopup) {
-        confirmationPopup.style.display = 'flex'; // Usar flex para centralizar
-        document.body.style.overflow = 'hidden'; // Bloqueia a rolagem do fundo
-    }
-}
-
-// Função para fechar o pop-up de confirmação
-function closeConfirmationPopup() {
-    if (confirmationPopup) {
-        confirmationPopup.style.display = 'none';
-        document.body.style.overflow = ''; // Restaura a rolagem do fundo
-    }
-}
-
-// Lidar com o envio do formulário
-async function handleSubmit(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-
-    const form = event.target;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-        const response = await fetch(form.action, {
-            method: form.method,
-            body: new URLSearchParams(data).toString(), // Envia como x-www-form-urlencoded
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+    if(menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '70px';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = '#0f0f0f';
+                navLinks.style.padding = '20px';
+                navLinks.style.borderBottom = '1px solid #333';
+                navLinks.style.zIndex = '999';
             }
         });
 
-        if (response.ok) {
-            closePopup(); // Fecha o pop-up do formulário
-            showConfirmationPopup(); // Mostra o pop-up de confirmação
-        } else {
-            console.error('Erro ao enviar o formulário:', response.statusText);
-            // Poderia mostrar uma mensagem de erro ao usuário aqui
-            alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
-        }
-    } catch (error) {
-        console.error('Erro na requisição:', error);
-        alert('Ocorreu um erro na conexão. Por favor, verifique sua internet e tente novamente.');
+        // Fecha menu ao clicar em link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth <= 600) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
     }
-}
 
-// Adiciona evento de clique para fechar o pop-up de contato clicando fora do conteúdo
-if (contactPopup) {
-    contactPopup.addEventListener('click', function(event) {
-        if (event.target === contactPopup) {
-            closePopup();
-        }
+    // --- 4. ANIMAÇÃO AO ROLAR (SCROLL REVEAL) ---
+    // Seleciona todos os elementos com a classe .reveal
+    const reveals = document.querySelectorAll('.reveal');
+
+    // Cria um observador para ver quando o elemento entra na tela
+    const revealOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Adiciona a classe 'active' para iniciar a animação CSS
+                entry.target.classList.add('active');
+                // Para de observar este elemento (anima só uma vez)
+                revealOnScroll.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Começa a animar quando 10% do elemento aparece
     });
-}
+
+    // Ativa o observador em cada elemento
+    reveals.forEach(element => {
+        revealOnScroll.observe(element);
+    });
+});
+/* --- 5. LIGHTBOX (VISUALIZADOR DE IMAGENS) --- */
+    
+    // Elementos do Modal
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("lightboxImg");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Seleciona todas as imagens dentro da galeria de resultados
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+
+    if (modal && modalImg && galleryImages.length > 0) {
+        
+        // Adiciona evento de clique em CADA imagem da galeria
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = "flex"; // Mostra o modal
+                modalImg.src = this.src;      // Pega a foto clicada e põe no modal
+                captionText.innerHTML = this.alt; // Usa o texto alternativo como legenda
+                
+                // Desabilita rolagem do site atrás do modal
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        // Função para Fechar
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Reabilita rolagem
+        }
+
+        // Fecha ao clicar no X
+        closeBtn.addEventListener('click', closeModal);
+
+        // Fecha ao clicar fora da imagem (no fundo preto)
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Fecha ao apertar a tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if(e.key === "Escape" && modal.style.display === "flex") {
+                closeModal();
+            }
+        });
+    }
