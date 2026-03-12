@@ -1,4 +1,3 @@
-
 // --- 1. MENU MOBILE ---
 function toggleMenu() {
     const nav = document.getElementById('navLinks');
@@ -37,7 +36,7 @@ function reveal() {
 window.addEventListener("scroll", reveal);
 reveal(); 
 
-// --- 3. LIGHTBOX (MODAL DA GALERIA) ---
+// --- 3. LIGHTBOX (MODAL DA GALERIA MASONRY) ---
 const modal = document.getElementById('imageModal');
 const modalImg = document.getElementById('lightboxImg');
 const closeBtn = document.querySelector('.close-btn');
