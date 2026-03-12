@@ -22,7 +22,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif !important;
 }
 
 html {
@@ -35,6 +34,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+   font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
 }
 
 img { max-width: 100%; display: block; }
@@ -352,3 +352,4 @@ footer p { font-size: 0.9rem; font-weight: 600; }
     .hero-buttons { display: flex; flex-direction: column; gap: 15px; }
     .btn-outline { margin: 0; }
 }
+
