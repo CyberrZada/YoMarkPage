@@ -1,3 +1,4 @@
+
 // --- 1. MENU MOBILE ---
 function toggleMenu() {
     const nav = document.getElementById('navLinks');
