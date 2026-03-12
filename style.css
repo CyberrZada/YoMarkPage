@@ -219,4 +219,44 @@ header {
 .form-col h3 { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; }
 .form-group { margin-bottom: 25px; }
 .form-group label { display: block; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; font-size: 0.9rem; }
-.form-group input { width: 100%; padding: 18
+.form-group input { width: 100%; padding: 18px; border: 3px solid #000; font-size: 1rem; font-family: inherit; font-weight: 700; outline: none; transition: var(--transition); }
+.form-group input:focus { box-shadow: 6px 6px 0 var(--brand-yellow); transform: translate(-2px, -2px); }
+
+footer { text-align: center; padding: 40px 0; background-color: #000; color: #fff; font-weight: 700; border-top: 4px solid var(--brand-yellow); }
+
+/* =========================================
+   11. ANIMAÇÕES & MODAIS
+   ========================================= */
+.reveal { opacity: 0; transform: translateY(60px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.feedback-container { margin-top: 20px; display: none; opacity: 0; transition: opacity 0.5s ease; }
+.success-message { background: var(--success-color); border: 3px solid #000; color: #fff; padding: 20px; text-align: center; font-weight: 800; text-transform: uppercase; box-shadow: 5px 5px 0 #000; }
+
+.lightbox-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); align-items: center; justify-content: center; }
+.lightbox-content { max-width: 90%; max-height: 85vh; border: 4px solid #fff; box-shadow: 0 0 30px rgba(255,255,255,0.2); animation: zoomIn 0.3s; }
+@keyframes zoomIn { from {transform:scale(0.8); opacity: 0;} to {transform:scale(1); opacity: 1;} }
+.close-btn { position: absolute; top: 30px; right: 40px; color: var(--brand-yellow); font-size: 50px; font-weight: bold; cursor: pointer; z-index: 2001; }
+
+/* =========================================
+   12. RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1024px) {
+    .hero h1 { font-size: 3rem; }
+    .gallery-grid { column-count: 2; }
+}
+@media (max-width: 768px) {
+    .mobile-menu-btn { display: block; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #000; border-bottom: 4px solid var(--brand-yellow); padding: 20px 0; }
+    .nav-links.active { display: flex; }
+    .btn-nav { display: none; }
+    .hero { padding: 160px 0 80px; }
+    .hero h1 { font-size: 2.3rem; }
+    .about-container { flex-direction: column; text-align: center; }
+    .stats-bar { flex-direction: column; gap: 40px; padding: 30px; }
+    .contact-wrapper { flex-direction: column; gap: 40px; }
+    .form-col { padding: 30px 20px; }
+    .gallery-grid { column-count: 1; }
+    .hero-buttons { display: flex; flex-direction: column; gap: 15px; }
+    .btn-outline { margin: 0; }
+}
