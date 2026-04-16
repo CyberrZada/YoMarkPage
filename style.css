@@ -7,12 +7,12 @@
     --text-muted: #1a1a1a;      /* Subtítulos bem escuros */
     
     --card-bg: #ffffff;         /* Cards brancos para contraste */
-    --primary-color: #000000;   /* Botões e bordas pretas */
+    --primary-color: #000000;   /* Bordas pretas */
     --primary-hover: #222222;   
     
     --brand-yellow: #f4ff0b;
     --brand-white: #ffffff;
-    --success-color: #25D366;   /* Verde oficial do WhatsApp */
+    --success-color: #56ad55;   /* Verde oficial / Cor dos Botões */
     
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -35,12 +35,12 @@ ul { list-style: none; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 /* =========================================
-   2. UI KIT (BOTÕES E TÍTULOS BRUTALISTAS)
+   2. UI KIT (BOTÕES VERDES NEO-BRUTALISTAS)
    ========================================= */
 .btn, .btn-full, .btn-nav {
     display: inline-flex; justify-content: center; align-items: center;
-    background-color: var(--primary-color); 
-    color: var(--brand-yellow); 
+    background-color: var(--success-color); /* Fundo Verde YoMark */
+    color: #000000; /* Texto Preto para dar contraste com o verde */
     padding: 16px 32px;
     font-weight: 900; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
     border: 3px solid #000000;
@@ -52,18 +52,8 @@ ul { list-style: none; }
 .btn:hover, .btn-full:hover, .btn-nav:hover {
     transform: translate(4px, 4px);
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
-    background-color: var(--primary-hover);
+    background-color: #1da851; /* Verde mais escuro no Hover */
 }
-
-.btn-outline {
-    background: transparent;
-    color: var(--primary-color);
-    border: 3px solid var(--primary-color);
-    box-shadow: 6px 6px 0px rgba(0, 0, 0, 1);
-    margin-left: 15px;
-}
-
-.btn-outline:hover { background: var(--primary-color); color: var(--brand-yellow); }
 
 .btn-full { width: 100%; }
 
@@ -97,6 +87,7 @@ header {
 .hero h1 { font-size: 4rem; line-height: 1.1; font-weight: 900; margin-bottom: 24px; color: #000; text-transform: uppercase; }
 .hero h1 span { background: #000; color: var(--brand-yellow); padding: 0 15px; display: inline-block; transform: rotate(-1deg); }
 .hero p { font-size: 1.3rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 50px; font-weight: 800; }
+.hero-buttons { display: flex; justify-content: center; width: 100%; }
 
 /* =========================================
    5. CARROSSEL DE CLIENTES
@@ -146,8 +137,8 @@ header {
    8. RESULTADOS, DEPOIMENTOS & MASONRY
    ========================================= */
 .stats-bar { display: flex; justify-content: center; gap: 60px; margin-bottom: 80px; flex-wrap: wrap; background: #000; padding: 50px; border: 4px solid #000; box-shadow: 12px 12px 0 #fff; color: #fff; }
-.stat-number { font-size: 4rem; font-weight: 900; color: var(--brand-yellow); line-height: 1; margin-bottom: 10px; text-align: center; }
-.stat-label { text-transform: uppercase; font-size: 1rem; font-weight: 800; letter-spacing: 1px; text-align: center; }
+.stat-number { font-size: 4rem; font-weight: 900; color: var(--brand-yellow); line-height: 1; margin-bottom: 10px; }
+.stat-label { text-transform: uppercase; font-size: 1rem; font-weight: 800; letter-spacing: 1px; }
 
 /* Masonry Grid (Os Tijolinhos para prints WhatsApp) */
 .gallery-grid { column-count: 3; column-gap: 30px; width: 100%; margin-top: 40px; }
@@ -158,15 +149,13 @@ header {
 }
 .gallery-item:hover { transform: translate(-5px, -5px); box-shadow: 15px 15px 0 #000; }
 .gallery-item img { width: 100%; height: auto; display: block; filter: contrast(1.05); }
+
 /* Container do Grid de Depoimentos */
 .testimonials-grid { 
-    display: flex; 
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
     gap: 30px; 
     margin-top: 60px; 
-    max-width: 1200px;
 }
 
 /* O Card Neo-Brutalista do Depoimento */
@@ -179,8 +168,6 @@ header {
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: calc(33.333% - 20px); /* 3 cards por linha, descontando o gap */
-    min-width: 320px; /* Impede que quebrem em telas menores */
 }
 
 .testimonial-highlight:hover { 
@@ -201,8 +188,8 @@ header {
     margin-top: 25px; 
     font-weight: 900; 
     text-transform: uppercase; 
-    color: var(--brand-yellow); /* Nome em amarelo para destacar no fundo branco/borda preta */
-    text-shadow: 1px 1px 0 #000; /* Contorno no amarelo para legibilidade */
+    color: var(--brand-yellow); 
+    text-shadow: 1px 1px 0 #000; 
 }
 
 /* =========================================
@@ -226,19 +213,6 @@ header {
 .contact-info-col p { font-size: 1.2rem; font-weight: 700; margin-bottom: 40px; }
 .contact-item { font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
 .contact-item i { background: #000; color: var(--brand-yellow); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-
-.whatsapp-btn-large {
-    display: inline-flex; align-items: center; gap: 15px; background: var(--success-color); color: #fff;
-    padding: 18px 40px; font-weight: 900; font-size: 1.2rem; text-transform: uppercase;
-    border: 3px solid #000; box-shadow: 6px 6px 0 #000; margin-top: 20px;
-    animation: glowPulse 2s infinite; transition: var(--transition);
-}
-.whatsapp-btn-large:hover { transform: translate(4px, 4px); box-shadow: 0 0 0 #000; animation: none; background: #1da851; }
-@keyframes glowPulse {
-    0% { box-shadow: 6px 6px 0 #000, 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    50% { box-shadow: 6px 6px 0 #000, 0 0 20px 10px rgba(37, 211, 102, 0.4); }
-    100% { box-shadow: 6px 6px 0 #000, 0 0 0 0 rgba(37, 211, 102, 0); }
-}
 
 .form-col { flex: 1; min-width: 320px; background: #fff; padding: 50px; border: 4px solid #000; box-shadow: 15px 15px 0 #000; }
 .form-col h3 { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; }
@@ -290,8 +264,8 @@ footer { text-align: center; padding: 40px 0; background-color: #000; color: #ff
     .hero { padding: 130px 0 60px; }
     .hero h1 { font-size: 2rem; margin-bottom: 20px; }
     .hero p { font-size: 1.1rem; margin-bottom: 30px; padding: 0 10px; }
-    .hero-buttons { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-    .btn, .btn-outline { width: 100%; margin: 0; padding: 16px 20px; font-size: 0.85rem; }
+    .hero-buttons { width: 100%; }
+    .btn { width: 100%; margin: 0; padding: 16px 20px; font-size: 0.85rem; }
 
     /* Quem Somos */
     .about-container { flex-direction: column; text-align: center; gap: 40px; }
@@ -315,7 +289,7 @@ footer { text-align: center; padding: 40px 0; background-color: #000; color: #ff
     .stats-bar { flex-direction: column; gap: 30px; padding: 30px 20px; box-shadow: 6px 6px 0 #fff; border-width: 3px; }
     .stat-number { font-size: 3rem; }
     
-    /* Masonry Mobile - 1 Coluna para leitura perfeita */
+    /* Masonry Mobile */
     .gallery-grid { column-count: 1; column-gap: 0; }
     .gallery-item { margin-bottom: 25px; box-shadow: 6px 6px 0 #000; }
     .gallery-item:hover { transform: none; box-shadow: 6px 6px 0 #000; }
@@ -332,9 +306,57 @@ footer { text-align: center; padding: 40px 0; background-color: #000; color: #ff
     .contact-wrapper { flex-direction: column; gap: 40px; }
     .contact-info-col h2 { font-size: 2rem; }
     .contact-item { font-size: 1rem; }
-    .whatsapp-btn-large { width: 100%; justify-content: center; font-size: 1rem; padding: 15px; box-shadow: 4px 4px 0 #000; }
     
     .form-col { padding: 30px 20px; box-shadow: 6px 6px 0 #000; border-width: 3px; }
     .form-col h3 { font-size: 1.5rem; margin-bottom: 20px; }
     .form-group input { padding: 14px; border-width: 2px; }
+
+    /* Botão Flutuante Mobile */
+    .floating-whatsapp {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 30px;
+        box-shadow: 4px 4px 0 #000;
+    }
+}
+
+
+/* =========================================
+   13. BOTÃO FLUTUANTE WHATSAPP
+   ========================================= */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: #25D366; /* Verde oficial do WhatsApp */
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    z-index: 9999;
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 0 #000000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    animation: pulse-wpp 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: translate(2px, 2px) scale(1.05);
+    box-shadow: 3px 3px 0 #000000;
+    background-color: #1da851; /* Verde mais escuro no hover */
+    color: #ffffff;
+    animation: none; /* Pausa a animação ao passar o mouse */
+}
+
+/* Animação para chamar atenção */
+@keyframes pulse-wpp {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
 }
