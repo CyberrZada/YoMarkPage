@@ -12,7 +12,7 @@
     
     --brand-yellow: #f4ff0b;
     --brand-white: #ffffff;
-    --success-color: #56ad55;   /* Verde oficial / Cor dos Botões */
+    --success-color: #56ad55;   /* Verde oficial YoMark / Cor dos Botões */
     
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -52,7 +52,7 @@ ul { list-style: none; }
 .btn:hover, .btn-full:hover, .btn-nav:hover {
     transform: translate(4px, 4px);
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
-    background-color: #1da851; /* Verde mais escuro no Hover */
+    background-color: #489447; /* Verde mais escuro no Hover */
 }
 
 .btn-full { width: 100%; }
@@ -136,7 +136,20 @@ header {
 /* =========================================
    8. RESULTADOS, DEPOIMENTOS & MASONRY
    ========================================= */
-.stats-bar { display: flex; justify-content: center; gap: 60px; margin-bottom: 80px; flex-wrap: wrap; background: #000; padding: 50px; border: 4px solid #000; box-shadow: 12px 12px 0 #fff; color: #fff; }
+/* Barra ajustada para um único item de destaque */
+.stats-bar { 
+    display: flex; 
+    justify-content: center; 
+    gap: 60px; 
+    margin: 0 auto 80px auto; 
+    flex-wrap: wrap; 
+    background: #000; 
+    padding: 50px; 
+    border: 4px solid #000; 
+    box-shadow: 12px 12px 0 #fff; 
+    color: #fff;
+    max-width: 400px; /* Mantém o item único concentrado no meio */
+}
 .stat-number { font-size: 4rem; font-weight: 900; color: var(--brand-yellow); line-height: 1; margin-bottom: 10px; }
 .stat-label { text-transform: uppercase; font-size: 1rem; font-weight: 800; letter-spacing: 1px; }
 
@@ -237,7 +250,45 @@ footer { text-align: center; padding: 40px 0; background-color: #000; color: #ff
 .close-btn { position: absolute; top: 30px; right: 40px; color: var(--brand-yellow); font-size: 50px; font-weight: bold; cursor: pointer; z-index: 2001; }
 
 /* =========================================
-   12. RESPONSIVIDADE (MOBILE AJUSTADO)
+   12. BOTÃO FLUTUANTE WHATSAPP (GERAL)
+   ========================================= */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: var(--success-color); /* Usando o verde definido na paleta */
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    z-index: 9999;
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 0 #000000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    animation: pulse-wpp 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: translate(2px, 2px) scale(1.05);
+    box-shadow: 3px 3px 0 #000000;
+    background-color: #489447; /* Verde escuro no hover */
+    color: #ffffff;
+    animation: none; /* Pausa a animação ao passar o mouse */
+}
+
+/* Animação para chamar atenção */
+@keyframes pulse-wpp {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* =========================================
+   13. RESPONSIVIDADE (MOBILE AJUSTADO)
    ========================================= */
 @media (max-width: 1024px) {
     .hero h1 { font-size: 3rem; }
@@ -286,7 +337,7 @@ footer { text-align: center; padding: 40px 0; background-color: #000; color: #ff
     .step-item h3 { font-size: 1.3rem; }
 
     /* Resultados e Stats */
-    .stats-bar { flex-direction: column; gap: 30px; padding: 30px 20px; box-shadow: 6px 6px 0 #fff; border-width: 3px; }
+    .stats-bar { flex-direction: column; gap: 30px; padding: 30px 20px; box-shadow: 6px 6px 0 #fff; border-width: 3px; margin-bottom: 40px;}
     .stat-number { font-size: 3rem; }
     
     /* Masonry Mobile */
@@ -320,43 +371,4 @@ footer { text-align: center; padding: 40px 0; background-color: #000; color: #ff
         font-size: 30px;
         box-shadow: 4px 4px 0 #000;
     }
-}
-
-
-/* =========================================
-   13. BOTÃO FLUTUANTE WHATSAPP
-   ========================================= */
-.floating-whatsapp {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 65px;
-    height: 65px;
-    background-color: #25D366; /* Verde oficial do WhatsApp */
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-    z-index: 9999;
-    border: 3px solid #000000;
-    box-shadow: 5px 5px 0 #000000;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    animation: pulse-wpp 2s infinite;
-}
-
-.floating-whatsapp:hover {
-    transform: translate(2px, 2px) scale(1.05);
-    box-shadow: 3px 3px 0 #000000;
-    background-color: #1da851; /* Verde mais escuro no hover */
-    color: #ffffff;
-    animation: none; /* Pausa a animação ao passar o mouse */
-}
-
-/* Animação para chamar atenção */
-@keyframes pulse-wpp {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
 }
