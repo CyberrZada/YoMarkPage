@@ -84,7 +84,7 @@ if (form) {
 
         const data = new FormData(event.target);
         
-        try {
+       try {
             const response = await fetch(event.target.action, {
                 method: form.method,
                 body: data,
@@ -92,10 +92,8 @@ if (form) {
             });
             
             if (response.ok) {
-                feedbackDiv.innerHTML = '<div class="success-message"><i class="fas fa-check-circle" style="margin-right: 10px;"></i> Análise solicitada com sucesso!</div>';
-                feedbackDiv.style.display = "block";
-                feedbackDiv.style.opacity = "1";
-                form.reset(); 
+                // REDIRECIONA PARA A PÁGINA DE OBRIGADO
+                window.location.href = "obrigado.html";
             } else {
                 throw new Error('Erro na resposta do Formspree');
             }
@@ -103,9 +101,11 @@ if (form) {
             feedbackDiv.innerHTML = '<div class="success-message" style="background: #ff4d4d; color: #fff;"><i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i> Ocorreu um erro. Tente pelo WhatsApp.</div>';
             feedbackDiv.style.display = "block";
             feedbackDiv.style.opacity = "1";
-        } finally {
+            
+            // Restaura o botão apenas se der erro (se der certo, a página vai mudar)
             submitBtn.innerHTML = originalBtnText;
             submitBtn.disabled = false;
+        
             
             // Esconde a mensagem depois de 5 segundos
             setTimeout(() => {
